@@ -1,0 +1,19 @@
+:root {
+    --icon-size: 20px;
+}
+
+a {
+    display: inline-flex;
+    align-items: center;
+}
+
+a span {
+    background-color: var(--primary-color-green);
+    margin-left: 5px;
+    width: var(--icon-size);
+    line-height: var(--icon-size);
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-weight: 400;
+}

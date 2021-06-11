@@ -1,3 +1,8 @@
+header img.quotes {
+    height: 45px;
+    width: auto;
+}
+
 header div.logo-container {
     display: flex;
     flex-direction: row;
@@ -21,12 +26,12 @@ header div.logo-container div.logo-text {
 header div.logo-container div.logo-text h2 {
     text-transform: uppercase;
     font-weight: bold;
-    color: #2f3542;
+    color: var(--primary-color-blackgrey);
 }
 
 header div.logo-container div.logo-text span {
     color: #fff;
-    background-color: #2f3542;
+    background-color: var(--primary-color-blackgrey);
     font-size: 11px;
     margin-left: 5px;
     text-transform: uppercase;
