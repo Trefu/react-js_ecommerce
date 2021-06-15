@@ -1,0 +1,81 @@
+:root {
+    --btn-size: 25px;
+}
+
+.item-count p, .item-count h4 {
+    margin: 0;
+}
+
+.item-count {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    background-color: var(--grey-light-1);
+    border-radius: 5px;
+    padding: 26px;
+    border: 1px solid var(--grey-light-3);
+    color: var(--branding-color-2);
+}
+
+.item-count h4 {
+    margin-bottom: 16px;
+}
+
+.item-count div.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1px solid var(--grey-light-3);
+    background-color: var(--grey-light-2);
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 16px;
+    height: calc(var(--btn-size) + 5px);
+}
+
+.item-count div p {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+}
+
+.item-count button {
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.item-count div.button-container button:first-child,
+.item-count div.button-container button:last-child {
+    height: var(--btn-size);
+    width: calc(var(--btn-size) + 5px);
+    font-weight: bold;
+    line-height: 50%;
+    font-size: 15px;
+    background-color: unset;
+    font-weight: bolder;
+}
+
+.item-count div.button-container button:first-child {
+    background-color: none;
+}
+
+.item-count div.button-container button:last-child {
+    background-color: none;
+}
+
+.item-count button.button-add {
+    color: var(--grey-light-1);
+    padding: 10px 0;
+    background-color: var(--branding-color-1);
+}
+
+.item-count button.button-add:hover {
+    background-color: var(--branding-color-1-hover);
+}
