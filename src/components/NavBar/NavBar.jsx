@@ -1,7 +1,7 @@
 import './NavBar.css';
-import CartWidget from '../CartWidget/CartWidget'
+import { CartWidget } from '../CartWidget/CartWidget'
 
-const NavBar = () => {
+export const NavBar = () => {
     return (
         <>
         <nav className='nav-bar m-l_a p-tb_22'>
@@ -14,5 +14,3 @@ const NavBar = () => {
         </>
     )
 };
-
-export default NavBar;

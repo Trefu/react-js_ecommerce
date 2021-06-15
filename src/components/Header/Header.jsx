@@ -1,7 +1,7 @@
-import NavBar from "../NavBar/NavBar"
+import { NavBar } from "../NavBar/NavBar"
 import './Header.css';
 
-const Header = () => {
+export const Header = () => {
     return (
         <header className="m-lr_32 d-f a-i_c">
             <div className="logo-container">
@@ -17,5 +17,3 @@ const Header = () => {
         </header>
     )
 };
-
-export default Header;

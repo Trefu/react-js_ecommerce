@@ -1,7 +1,5 @@
-const ItemListContainer = ({ saludo }) => {
+export const ItemListContainer = ({ saludo }) => {
     return (
         <div className="p_32"> {saludo} </div>
     )
 }
-
-export default ItemListContainer;

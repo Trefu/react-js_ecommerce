@@ -1,9 +1,7 @@
 import './CartWidget.css';
 
-const CartWidget = () => {
+export const CartWidget = () => {
     return (
         <a href='/'>🛒 Carrito <span>0</span></a>
     )
 };
-
-export default CartWidget;
