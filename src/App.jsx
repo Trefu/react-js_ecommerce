@@ -4,10 +4,10 @@ import { ItemListContainer } from "./containers/ItemListContainer/ItemListContai
 
 function App() {
   return (
-    <div className="wrapper">
+    <>
       <Header />
       <ItemListContainer saludo={"TODO: Item list"} />
-    </div>
+    </>
   );
 }
 

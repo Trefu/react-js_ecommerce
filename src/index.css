@@ -1,6 +1,14 @@
 :root {
-  --primary-color-green: #00b16a;
-  --primary-color-blackgrey: #2e3238;
+  --branding-color-1: #00b16a;
+  --branding-color-2: #2e3238;
+  --grey-light-1: #ffffff;
+  --grey-light-2: #f1f2f6;
+  --grey-light-3: #dfe4ea;
+  --grey-light-4: #ced6e0;
+  --grey-dark-1: #a4b0be;
+  --grey-dark-2: #57606f;
+  --grey-dark-3: #747d8c;
+  --grey-dark-4: #2f3542;
 }
 
 body {

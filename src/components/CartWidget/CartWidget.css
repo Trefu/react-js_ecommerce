@@ -8,7 +8,7 @@ a {
 }
 
 a span {
-    background-color: var(--primary-color-green);
+    background-color: var(--branding-color-1);
     margin-left: 5px;
     width: var(--icon-size);
     line-height: var(--icon-size);
