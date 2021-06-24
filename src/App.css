@@ -15,7 +15,7 @@ body {
 .m-t_0 { margin-top: 0px; }
 .m-t_32 { margin-top: 32px; }
 .m-b_0 { margin-bottom: 0px; }
-.m-b_32 { margin-top: 32px; }
+.m-b_32 { margin-bottom: 32px; }
 .m-l_a { margin-left: auto; }
 .m-l_32 { margin-left: 32px; }
 .m-r_a { margin-right: auto; }
@@ -28,4 +28,6 @@ body {
 .d-f { display: flex; }
 .f-d_r { flex-direction: row; }
 .f-d_c { flex-direction: column; }
+.f-w_w { flex-wrap: wrap; }
 .a-i_c { align-items: center; }
+.j-c_sb { justify-content: space-between; }

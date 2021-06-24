@@ -1,0 +1,30 @@
+/* TODO: Este estilo de cajita blanca con borde se te va hacer bastante recurrente, movelo a una clase */
+.item {
+    width: calc(60% * (1/4) - 10px - 1px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--grey-light-1);
+    border-radius: 5px;
+    padding: 26px;
+    border: 1px solid var(--grey-light-3);
+    color: var(--branding-color-2);
+}
+
+.item h2 {
+    margin-bottom: 0;
+}
+
+.item p {
+    color: var(--grey-dark-3);
+    font-weight: 500;
+    font-size: 22px;
+    margin-bottom: 0;
+}
+
+.item p::before {
+    content: "$";
+}
+
+.item img {
+    max-width: 250px;
+}

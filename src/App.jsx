@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <Header />
-      <ItemListContainer saludo={"TODO: Item list"} />
+      <ItemListContainer saludo={"Componente de ejercicio anterior..."} />
     </>
   );
 }
