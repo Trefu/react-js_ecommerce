@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ItemCount.css';
 
-export const ItemCount = ({ stock, initial }) => {
+export const ItemCount = ({ title, stock, initial }) => {
     const [count, setCount] = useState(initial);
 
     const updateCount = (n) => {
@@ -19,7 +19,7 @@ export const ItemCount = ({ stock, initial }) => {
 
     return (
         <div className="item-count">
-            <h4>Nombre</h4>
+            { title ? <h4>{title}</h4> : <></> }
             <div className="button-container">
                 <button onClick={() => updateCount(count + 1)}>+</button>
                 <p>{count}</p>

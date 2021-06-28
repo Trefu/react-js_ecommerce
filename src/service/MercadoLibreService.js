@@ -17,3 +17,12 @@ export const searchItemsByQuery = async (query) => {
 export const itemDetailById = async (id) => {
     return await jsonFetch(`https://api.mercadolibre.com/items/${id}`);
 }
+
+/**
+ * Devuelve la descripción de un producto mediante su ID
+ * @param {*} id del producto a buscar descripción
+ * @returns Descripción del producto
+ */
+export const itemDescriptionById = async (id) => {
+    return await jsonFetch(`https://api.mercadolibre.com/items/${id}/description`);
+}

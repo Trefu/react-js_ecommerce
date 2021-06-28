@@ -9,10 +9,13 @@ export const ItemListContainer = ({ saludo }) => {
     const getProductos = async (query) => {
         let r = await mercadoLibreQuerySearch(query);
         setProductos(r !== undefined ? r.results : undefined);
+
+        // Dejo a mano los id's para probar el item detail
+        r.results.map((i) => console.log(i.id));
     }
 
     useEffect(() => {
-        /* Por defecto trae zapatillas */
+        // Por defecto trae zapatillas
         getProductos('Juegos ps4 fisicos');
     }, []);
 
@@ -21,7 +24,7 @@ export const ItemListContainer = ({ saludo }) => {
             <section className="basic-container m-t_32">
                 <p> {saludo} </p>
                 <br />
-                <ItemCount stock={5} initial={1} />
+                <ItemCount title="Hola!" stock={5} initial={1} />
             </section>
 
             <section className="basic-container m-t_32">

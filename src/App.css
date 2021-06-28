@@ -8,14 +8,22 @@ body {
   max-width: 80%;
   margin: 0 auto;
   padding: 0 32px;
+  min-width: 400px;
 }
 
+.ars-symbol::before { content: "$"; }
+
+.b-r_5 { border-radius: 5px; }
+.bg-g-l_1 { background-color: var(--grey-light-1); }
+.bdr-g-l_3 { border: 1px solid var(--grey-light-3); }
 .m-w_80p { max-width: 80%; }
+.m_0 { margin: 0; }
 .m_32 { margin: 32px }
 .m-t_0 { margin-top: 0px; }
 .m-t_32 { margin-top: 32px; }
 .m-b_0 { margin-bottom: 0px; }
 .m-b_32 { margin-bottom: 32px; }
+.m-b_16 { margin-bottom: 16px; }
 .m-l_a { margin-left: auto; }
 .m-l_32 { margin-left: 32px; }
 .m-r_a { margin-right: auto; }
@@ -32,3 +40,7 @@ body {
 .f-w_w { flex-wrap: wrap; }
 .a-i_c { align-items: center; }
 .j-c_sb { justify-content: space-between; }
+
+@media screen and (max-width: 980px) {
+  .row-to-column_in-980 { flex-direction: column; }
+}
