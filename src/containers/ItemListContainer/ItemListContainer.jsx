@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { ItemCount } from "../../components/ItemCount/ItemCount";
 import { ItemList } from '../../components/ItemList/ItemList';
-import { querySearch as mercadoLibreQuerySearch } from "../../service/MercadoLibreService";
+import { searchItemsByQuery as mercadoLibreQuerySearch } from "../../service/MercadoLibreService";
 
 export const ItemListContainer = ({ saludo }) => {
     const [productos, setProductos] = useState([]);
 
     const getProductos = async (query) => {
-        setProductos(await mercadoLibreQuerySearch(query));
+        let r = await mercadoLibreQuerySearch(query);
+        setProductos(r !== undefined ? r.results : undefined);
     }
 
     useEffect(() => {
         /* Por defecto trae zapatillas */
-        getProductos('Zapatillas');
+        getProductos('Juegos ps4 fisicos');
     }, []);
 
     return (
@@ -31,7 +32,7 @@ export const ItemListContainer = ({ saludo }) => {
                     <button onClick={() => { getProductos(document.getElementById('buscador').value) }}>Buscar</button>
                 </div>
 
-                {productos.length === 0 ? "Cargando..." : <ItemList productos={productos} />}
+                { productos === undefined || productos.length === 0 ? "Cargando..." : <ItemList productos={productos} />}
             </section>
         </>
     )
