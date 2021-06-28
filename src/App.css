@@ -25,6 +25,7 @@ body {
 .p-l_32 { padding-left: 32px; }
 .p-r_32 { padding-right: 32px; }
 .p-tb_22 { padding: 22px 0; }
+.d-ib { display: inline-block; }
 .d-f { display: flex; }
 .f-d_r { flex-direction: row; }
 .f-d_c { flex-direction: column; }

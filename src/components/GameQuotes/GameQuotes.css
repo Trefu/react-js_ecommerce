@@ -1,4 +1,22 @@
-img.quotes {
-    height: 45px;
-    width: auto;
+div.gamequotes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.gamequotes img {
+    margin-right: 12px;
+}
+
+div.gamequotes p::before {
+    content: "";
+    border-right: 1px solid var(--grey-dark-2);
+    margin-right: 15px;
+}
+
+div.gamequotes p {
+    color: var(--grey-dark-2);
+    font-style: italic;
+    font-size: 13px;
+    margin: 0;
 }
