@@ -1,41 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { ItemCount } from "../../components/ItemCount/ItemCount";
+import { useParams } from 'react-router-dom';
 import { ItemList } from '../../components/ItemList/ItemList';
+import { ItemListSearch } from '../../components/ItemListSearch/ItemListSearch';
 import { searchItemsByQuery as mercadoLibreQuerySearch } from "../../service/MercadoLibreService";
 
-export const ItemListContainer = ({ saludo }) => {
+const DEFAULT_QUERY_SEARCH = 'Juegos PS4 físicos';
+
+export const ItemListContainer = () => {
+    const { id } = useParams();
     const [productos, setProductos] = useState([]);
 
     const getProductos = async (query) => {
         let r = await mercadoLibreQuerySearch(query);
-        setProductos(r !== undefined ? r.results : undefined);
-
-        // Dejo a mano los id's para probar el item detail
-        r.results.map((i) => console.log(i.id));
+        setProductos(r !== null ? r.results : null);
     }
 
     useEffect(() => {
-        // Por defecto trae zapatillas
-        getProductos('Juegos ps4 fisicos');
-    }, []);
+        getProductos(id !== undefined ? id : DEFAULT_QUERY_SEARCH);
+    }, [id]);
 
     return (
         <>
             <section className="basic-container m-t_32">
-                <p> {saludo} </p>
-                <br />
-                <ItemCount title="Hola!" stock={5} initial={1} />
-            </section>
-
-            <section className="basic-container m-t_32">
-
-                { /* No lo pedía el ejercicio pero me dio curiosidad agregarlo TODO: Debería ser un componente y agregarle CSS */}
-                <div className="m-b_32">
-                    <input id="buscador" placeholder="Buscar productos..." type="text"></input>
-                    <button onClick={() => { getProductos(document.getElementById('buscador').value) }}>Buscar</button>
-                </div>
-
-                { productos === undefined || productos.length === 0 ? "Cargando..." : <ItemList productos={productos} />}
+                <ItemListSearch onSearch={getProductos}/>
+                {productos === undefined || productos.length === 0 || productos === null ? "Cargando..." : <ItemList productos={productos} />}
             </section>
         </>
     )

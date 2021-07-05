@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { itemDetailById as mercadoLibreitemDetailById, itemDescriptionById as mercadoLibreItemDescriptionById } from "../../service/MercadoLibreService";
 import { ItemDetail } from "../../components/ItemDetail/ItemDetail";
 
-// Esto lo debería recibir por parámetro
-const MOCK_ITEM_ML_ID = 'MLA911112983';
-
 export const ItemDetailContainer = () => {
+    const { id } = useParams();
     const [item, setItem] = useState([]);
     const [description, setDescription] = useState([]);
 
     const obtenerDetalle = async () => {
-        setItem(await mercadoLibreitemDetailById(MOCK_ITEM_ML_ID));
-        setDescription(await mercadoLibreItemDescriptionById(MOCK_ITEM_ML_ID));
+        setItem(await mercadoLibreitemDetailById(id));
+        setDescription(await mercadoLibreItemDescriptionById(id));
     }
 
     useEffect(() => {

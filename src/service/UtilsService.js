@@ -10,6 +10,6 @@
         return await response.json();
     } catch(e) {
         console.error(`Error en la petición de ${url}`);
-        return undefined;
+        return null;
     }
 }

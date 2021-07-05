@@ -4,7 +4,7 @@ Repositorio para subir los avances del curso de React JS de [Coderhouse](https:/
 
 **Profesor:** Cristian Hourcade\
 **Tutor:** Nicolás Díaz\
-**Camada:** 17565\
+**Camada:** 17565
 
 ## Sobre el proyecto
 

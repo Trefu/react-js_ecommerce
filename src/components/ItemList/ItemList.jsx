@@ -2,7 +2,7 @@ import { Item } from '../Item/Item';
 
 export const ItemList = ({ productos }) => {
     let itemsList = productos.map((p) => {
-        return <Item nombre={p.title} precio={p.price} link={p.permalink} imagen={p.thumbnail} key={p.id} />;
+        return <Item nombre={p.title} precio={p.price} imagen={p.thumbnail} id={p.id} key={p.id} />;
     });
 
     return (

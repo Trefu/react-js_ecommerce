@@ -1,5 +1,5 @@
 import './ItemDetail.css';
-import { ItemCount } from '../ItemCount/ItemCount';
+// import { ItemCount } from '../ItemCount/ItemCount';
 
 export const ItemDetail = ({ item, description }) => {
     return (
@@ -9,7 +9,7 @@ export const ItemDetail = ({ item, description }) => {
                 <h1 className="m_0 m-b_16">{item.title}</h1>
                 <h3 className="m_0 ars-symbol">{item.price}</h3>
                 <p>{description}</p>
-                <ItemCount stock={item.available_quantity} initial={0}/>
+                {/* <ItemCount stock={item.available_quantity} initial={0}/> */ }
             </div>
         </div>
     )

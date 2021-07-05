@@ -1,7 +1,7 @@
 import "./GameQuotes.css";
 import React, { useState, useEffect } from 'react';
 
-const IMG_PATH = process.env.PUBLIC_URL + 'quotes/';
+const IMG_PATH = '/quotes/';
 const QUOTES_AND_IMAGES = [
     ['¡Detrás de ti, imbecil!', 'Wololo!', 'Mrglglglgl', 'Go go go!', 'Waka waka', '¡Solo teníamos que seguir al Maldito Tren, CJ!', 'Thank you!'],
     ['rs4', 'monje', 'murloc', 'ct' , 'pacman', 'smoke', 'tnkyou']
