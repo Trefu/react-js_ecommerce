@@ -29,7 +29,6 @@
     background-color: var(--grey-light-2);
     align-items: center;
     border-radius: 5px;
-    margin-bottom: 16px;
     height: calc(var(--btn-size) + 5px);
 }
 
