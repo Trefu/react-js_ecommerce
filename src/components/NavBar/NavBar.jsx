@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom';
-import { CartWidget } from '../CartWidget/CartWidget'
+import { CartWidget } from '../CartWidget/CartWidget';
+import { default as navBarItems } from '../../utils/NavBarItems.json';
 import './NavBar.css';
 
 export const NavBar = () => {
     return (
         <>
             <nav className='nav-bar m-l_a p-tb_22'>
-                <Link to='/'>Inicio</Link>
-                {/* <Link to='/category/'>Categorías</Link> */}
-                <Link to='/category/Juegos%20XBOX%20fisicos'>Xbox</Link>
-                <Link to='/category/Juegos%20PS4'>PS4</Link>
-                <Link to='/category/Juegos%20Steam'>Steam</Link>
-                {/*<Link to='/contacto'>Contacto</Link>*/}
+                {navBarItems.map(({ url, name }, i) => <Link key={i} to={`${url}`} alt={name}>{name}</Link>)}
                 <CartWidget />
             </nav>
         </>
