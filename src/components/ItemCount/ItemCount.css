@@ -38,6 +38,10 @@
     font-weight: 600;
 }
 
+.item-count div p span {
+    font-weight: lighter;
+}
+
 .item-count button {
     border: none;
     text-decoration: none;
@@ -73,8 +77,17 @@
     color: var(--grey-light-1);
     padding: 10px 0;
     background-color: var(--branding-color-1);
+    margin-top: 12px;
 }
 
 .item-count button.button-add:hover {
     background-color: var(--branding-color-1-hover);
+}
+
+.item-count a {
+    text-align: center;
+    display: inline;
+    color: var(--branding-color-2);
+    font-size: 12px;
+    margin-top: 7px;
 }
