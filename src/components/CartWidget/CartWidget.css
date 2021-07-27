@@ -7,6 +7,7 @@ a {
     align-items: center;
 }
 
+div.widget-item-list div span:first-of-type,
 a span {
     background-color: var(--branding-color-1);
     margin-left: 5px;
@@ -16,4 +17,43 @@ a span {
     text-align: center;
     color: #fff;
     font-weight: 400;
+}
+
+div.widget-item-list {
+    position: absolute;
+    /* background-color: oldlace; */
+    margin-top: 15px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 16px;
+    max-height: 300px;
+    max-width: 350px;
+    overflow-y: scroll;
+    margin-right: 150px;
+}
+
+div.widget-item-list.widget-hidden {
+    display: none;
+}
+
+div.widget-item-list div {
+    display: flex;
+    align-items: center;
+}
+
+div.widget-item-list div span:first-of-type {
+    position: absolute;
+    margin-left: -10px;
+}
+
+div.widget-item-list div img {
+    border-radius: 100%;
+    width: 75px;
+}
+
+div.widget-item-list div h5 {
+    margin: 0 10px;
+    cursor: pointer;
 }

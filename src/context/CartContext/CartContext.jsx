@@ -22,6 +22,21 @@ export const CartComponentContext = ({ children }) => {
         }
     }
 
+    // TODO: Tener en cuenta el stock
+    const changeItemQuantityFromCartById = (id, cantidad) => {
+        let index = findItemIndexById(id);
+        changeItemQuantityFromCartByIndex(index, cantidad);
+    }
+
+    const deleteItemFromCartById = (id) => {
+        deleteItemFromCartByIndex(findItemIndexById(id));
+    }
+
+    /*
+    const findItemById = (id) => {
+        return cart.find(e => e.item.id === id);
+    } */
+    
     const findItemIndexById = (id) => {
         return cart.findIndex(e => e.item.id === id);
     }
@@ -46,13 +61,19 @@ export const CartComponentContext = ({ children }) => {
         return cart[index].cantidad !== cantidad;
     }
 
+    const getItemsQuantity = () => {
+        let cant = 0;
+        cart.map(o => cant += o.cantidad);
+        return cant;
+    }
+
     useEffect(() => {
         // Dejo el useEffect junto con la consola para propositos de testing
         console.log(cart);
     }, [cart]);
 
     return (
-        <CartContext.Provider value={{ cart, addItem }}>
+        <CartContext.Provider value={{ cart, addItem, changeItemQuantityFromCartById, getItemsQuantity, deleteItemFromCartById }}>
             {children}
         </CartContext.Provider>
     )

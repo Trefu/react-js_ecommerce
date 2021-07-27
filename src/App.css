@@ -10,6 +10,13 @@ body {
   min-width: 400px;
 }
 
+.clean-button {
+  border: none;
+  text-decoration: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .btn-primary {
   display: block;
   border: none;
