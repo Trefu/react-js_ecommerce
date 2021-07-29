@@ -5,6 +5,7 @@ import { ItemDetailContainer } from "./containers/ItemDetailContianer/ItemDetail
 import { NotFound404 } from './components/NotFound404/NotFound404';
 import { CartComponentContext } from './context/CartContext/CartContext';
 import { Cart as CartComponent } from './components/Cart/Cart';
+import { AddItem } from './components/AddItem/AddItem';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/category/:id" component={ItemListContainer} />
           <Route path="/item/:id" component={ItemDetailContainer} />
           <Route path="/cart" component={CartComponent} />
+          <Route path="/add" component={AddItem}/>
           <Route path="*" component={NotFound404} />
         </Switch>
         {/* TODO: Footer */}

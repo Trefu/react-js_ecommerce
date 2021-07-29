@@ -51,6 +51,7 @@ div.widget-item-list div span:first-of-type {
 div.widget-item-list div img {
     border-radius: 100%;
     width: 75px;
+    height: 75px;
 }
 
 div.widget-item-list div h5 {

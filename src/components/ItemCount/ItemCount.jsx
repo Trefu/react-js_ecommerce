@@ -12,15 +12,14 @@ const TXT_BTN_AGREGAR = 'Añadir al carrito';
 const TXT_BTN_ELIMINAR = 'Eliminar del carrito';
 
 export const ItemCount = ({ initial, stock, count, updateCount, addToCart }) => {
-    const BTN_ADD = document.querySelector('button.button-add');
 
     const onUpdateCountHandler = (n) => {
-        BTN_ADD.style.display = "block";
+        document.querySelector('button.button-add').style.display = "block";
         changeButtonText(n <= 0 ? TXT_BTN_ELIMINAR : TXT_BTN_AGREGAR);
         updateCount(n);
     }
 
-    const changeButtonText = (text) => BTN_ADD.innerText = text;
+    const changeButtonText = (text) => document.querySelector('button.button-add').innerText = text;
 
     return (
         <div className="item-count">

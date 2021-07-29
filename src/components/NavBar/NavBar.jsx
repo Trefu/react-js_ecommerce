@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CartWidget } from '../CartWidget/CartWidget';
-import { default as navBarItems } from '../../utils/NavBarItems.json';
+import { default as navBarItems } from '../../cfg/NavBar/NavBarItems.json';
 import './NavBar.css';
 
 export const NavBar = () => {

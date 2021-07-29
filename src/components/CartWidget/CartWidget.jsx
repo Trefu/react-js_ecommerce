@@ -31,10 +31,10 @@ export const CartWidget = () => {
                 {
                 cart.map(({ item, cantidad }) => {
                     return (
-                        <div>
+                        <div key={item.id}>
                             <span>{cantidad}</span>
-                            <img className="bdr-g-l_3" src={item.thumbnail} alt={item.title} />
-                            <h5 onClick={() => { history.push(`/item/${item.id}`) }}>{item.title}</h5>
+                            <img className="bdr-g-l_3" src={item.img_url} alt={item.name} />
+                            <h5 onClick={() => { history.push(`/item/${item.id}`) }}>{item.name}</h5>
                             <span className="ars-symbol">{item.price * cantidad}</span>
                         </div>
                     )
