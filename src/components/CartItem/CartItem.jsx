@@ -19,8 +19,8 @@ export const CartItem = ({ item, cantidad }) => {
 
     return (
         <div className="cart-item bdr-g-l_3 bg-g-l_1 b-r_5 row-to-column_in-980">
-            <img src={item.thumbnail} alt={item.title} />
-            <h3 onClick={() => { history.push(`/item/${item.id}`) }}>{item.title}</h3>
+            <img src={item.img_url} alt={item.name} />
+            <h3 onClick={() => { history.push(`/item/${item.id}`) }}>{item.name}</h3>
             <p className="price">${item.price * cantidad}</p>
             {
                 <div className="count-container">
