@@ -18,7 +18,7 @@ function App() {
           <Route path="/category/:id" component={ItemListContainer} />
           <Route path="/item/:id" component={ItemDetailContainer} />
           <Route path="/cart" component={CartComponent} />
-          <Route path="/add" component={AddItem}/>
+          <Route path={["/add/:id", "/add"]} component={AddItem}/>
           <Route path="*" component={NotFound404} />
         </Switch>
         {/* TODO: Footer */}

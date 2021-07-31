@@ -37,12 +37,23 @@ body {
   background-color: var(--branding-color-1-hover);
 }
 
+a.a-small {
+  color: var(--branding-color-2);
+  font-size: 12px;
+}
+
+a.a-small:hover {
+  color: var(--grey-dark-3);
+}
+
 .ars-symbol::before { content: "$"; }
 
 .c-g-d_2 { color: var(--grey-dark-2); }
 .f-w_n { font-weight: normal; }
+.t-a_c { text-align: center; }
 
 .b-r_5 { border-radius: 5px; }
+.b-r_5p { border-radius: 5%; }
 
 .bg-g-l_1 { background-color: var(--grey-light-1); }
 .bg-g-l_2 { background-color: var(--grey-light-2); }
@@ -97,6 +108,7 @@ body {
 .f-w_w { flex-wrap: wrap; }
 .a-i_c { align-items: center; }
 .j-c_sb { justify-content: space-between; }
+.j-c_c { justify-content:center }
 
 @media screen and (max-width: 980px) {
   .row-to-column_in-980 { flex-direction: column; }

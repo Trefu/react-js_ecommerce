@@ -91,3 +91,7 @@
     font-size: 12px;
     margin-top: 7px;
 }
+
+.item-count a:hover {
+    color: var(--grey-dark-3)
+}
