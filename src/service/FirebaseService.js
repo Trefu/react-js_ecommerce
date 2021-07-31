@@ -86,6 +86,15 @@ export const firebaseService = {
      */
     updateItem: async (nameCollection, id, fieldsObj) => {
         await FIRESTORE.collection(nameCollection).doc(id).update(fieldsObj);
+    },
+
+    /**
+     * Elimina un item
+     * @param {*} nameCollection Nombre de la colección en donde esta el item
+     * @param {*} id Del item a eliminar
+     */
+    deleteItem: async (nameCollection, id) => {
+        await FIRESTORE.collection(nameCollection).doc(id).delete();
     }
 
 }
