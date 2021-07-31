@@ -1,6 +1,6 @@
 import { FIRESTORE } from '../cfg/Firebase/Firebase';
 
-const utilMapResponse = async (r) => r.docs.map((e) => ({ id: e.id, ...e.data() }));
+const utilMapResponse = (r) => r.docs.map((e) => ({ id: e.id, ...e.data() }));
 
 /**
  * Service que conteine métodos para conectarse a la base de datos de firebase y traer colecciones
@@ -13,7 +13,7 @@ export const firebaseService = {
      * @return {*} Elementos encontrados
      */
     findAll: async (nameCollection) => {
-        return await utilMapResponse(await FIRESTORE.collection(nameCollection).get());
+        return utilMapResponse(await FIRESTORE.collection(nameCollection).get());
     },
 
     /**
@@ -43,7 +43,7 @@ export const firebaseService = {
      * @param {*} whereFilter Filtro para el where, ej: ['price', '>', 100]
      */
     findAndSetWithFilter: async (nameCollection, setterCallback, whereFilter) => {
-        setterCallback(firebaseService.findWithFilter(nameCollection, whereFilter));
+        setterCallback(await firebaseService.findWithFilter(nameCollection, whereFilter));
     },
 
     /**
@@ -54,7 +54,7 @@ export const firebaseService = {
      */
     findById: async (nameCollection, id) => {
         const r = await FIRESTORE.collection(nameCollection).doc(id).get();
-        return { id: r.id, ...r.data() };
+        return { id:r.id, ...r.data() };
     },
 
     /**
@@ -64,7 +64,7 @@ export const firebaseService = {
      * @param {*} id Del item a buscar
      */
     findAndSetById: async (nameCollection, setterCallback, id) => {
-        setterCallback(firebaseService.findById(nameCollection, id));
+        setterCallback(await firebaseService.findById(nameCollection, id));
     },
 
     /**
