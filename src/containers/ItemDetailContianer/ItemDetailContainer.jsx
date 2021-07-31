@@ -10,7 +10,7 @@ export const ItemDetailContainer = () => {
     const [item, setItem] = useState([]);
     
     useEffect(() => {
-        firebaseService.findById('items', setItem, id);
+        firebaseService.findAndSetById('items', setItem, id);
     }, [id]);
 
     return (

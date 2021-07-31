@@ -12,9 +12,9 @@ export const ItemListContainer = () => {
     
     useEffect(() => {
         if(itemCategory) {
-            firebaseService.findWithFilter(ITEMS_COLLECTION_NAME, setProductos, ['category', '==', itemCategory]);
+            firebaseService.findAndSetWithFilter(ITEMS_COLLECTION_NAME, setProductos, ['category', '==', itemCategory]);
         } else {
-            firebaseService.findAll(ITEMS_COLLECTION_NAME, setProductos);
+            firebaseService.findAndSetAll(ITEMS_COLLECTION_NAME, setProductos);
         }
     }, [itemCategory]);
 
