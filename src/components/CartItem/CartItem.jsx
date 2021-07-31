@@ -11,7 +11,7 @@ export const CartItem = ({ item, cantidad }) => {
     const handlerCount = (id, newCantidad) => {
         if(newCantidad === 0) {
             deleteItemFromCartById(id);
-        } else {
+        } else if(newCantidad <= item.stock){
             changeItemQuantityFromCartById(id, newCantidad);
             setCount(newCantidad);
         }
