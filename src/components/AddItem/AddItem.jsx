@@ -21,7 +21,7 @@ export const AddItem = () => {
     const updateItem = async (data) => {
         console.log('Se va actualizar el item');
         await firebaseService.updateItem('items', id, data);
-        console.log(`Item actualizado con éxito (????)`);
+        console.log(`Item actualizado con éxito`);
     }
 
     const addItem = async (data) => {
@@ -59,14 +59,17 @@ export const AddItem = () => {
         }
     }
 
+    const removeItem = async () => {
+        await firebaseService.deleteItem('items', id);
+        onSucces();
+    }
+
     useEffect(() => {
         if (id) findAndLoadItem();
     }, [id]);
 
     return (
         <div className="add-item-container basic-container m-t_32">
-            
-            
 
             <h3>[{id || newId}] {id ? 'Actualizar' : 'Agregar nuevo'} item</h3>
             <p>Esto es a modo de prueba, no debería ni pushear esto.</p>
@@ -76,45 +79,48 @@ export const AddItem = () => {
                 <Link className="m-t_5" to={`/item/${id ? id : newId}`}>Ver item</Link>
             </div>
 
-            <form id="formulario" className="m-w_25p p_32 bdr-g-l_3 bg-g-l_1 b-r_5 m-t_32 m-b_32">
+            <form id="formulario" className="w_50p p_32 bdr-g-l_3 bg-g-l_1 b-r_5 m-t_32 m-b_32">
 
-                <div className="d-f j-c_sb m-b_32">
-                    <label htmlFor="name">Nombre</label>
-                    <input name="name" type="text" />
+                <div className="d-f m-b_32">
+                    <label className="w_15p m-r_32" htmlFor="name">Nombre</label>
+                    <input className="m-l_32" name="name" type="text" />
                 </div>
 
-                <div className="d-f j-c_sb m-b_32">
-                    <label htmlFor="img_url">Img url</label>
-                    <input name="img_url" type="text" />
+                <div className="d-f m-b_32">
+                    <label className="w_15p m-r_32" htmlFor="img_url">Img url</label>
+                    <input className="m-l_32" name="img_url" type="text" />
                 </div>
 
-                <div className="d-f j-c_sb m-b_32">
-                    <label htmlFor="category">Category</label>
-                    <select name="category">
+                <div className="d-f m-b_32">
+                    <label className="w_15p m-r_32" htmlFor="category">Category</label>
+                    <select className="m-l_32" name="category">
                         <option value="PC">PC</option>
                         <option value="XBOX">XBOX</option>
                         <option value="PS5">PS5</option>
                     </select>
                 </div>
 
-                <div className="d-f j-c_sb m-b_32">
-                    <label htmlFor="plataform">Plataform</label>
-                    <input name="plataform" type="text" />
+                <div className="d-f m-b_32">
+                    <label className="w_15p m-r_32" htmlFor="plataform">Plataform</label>
+                    <input className="m-l_32" name="plataform" type="text" />
                 </div>
 
-                <div className="d-f j-c_sb m-b_32">
-                    <label htmlFor="price">Price</label>
-                    <input name="price" type="number" />
+                <div className="d-f m-b_32">
+                    <label className="w_15p m-r_32" htmlFor="price">Price</label>
+                    <input className="m-l_32" name="price" type="number" />
                 </div>
 
-                <div className="d-f j-c_sb m-b_32">
-                    <label htmlFor="stock">Stock</label>
-                    <input name="stock" type="number" />
+                <div className="d-f m-b_32">
+                    <label className="w_15p m-r_32" htmlFor="stock">Stock</label>
+                    <input className="m-l_32" name="stock" type="number" />
                 </div>
 
             </form>
 
-            <button className="btn-primary p-l_32 p-r_32" onClick={submitHanlder}>{id ? 'Actualizar item' : 'Agregar item'}</button>
+            <div className="d-f">
+                <button className="btn-primary p-l_16 p-r_16" onClick={submitHanlder}>{id ? 'Actualizar item' : 'Agregar item'}</button>
+                {id ? <button className="btn-primary bg-red p-l_16 p-r_16 m-l_32" onClick={removeItem}>{'Eliminar item'}</button> : ''}
+            </div>
 
         </div>
     )

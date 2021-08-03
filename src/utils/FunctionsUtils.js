@@ -18,6 +18,14 @@ export const utilRemoveElement = (querySelector) => {
 }
 
 /**
+ * Elimina uno o varios elementos del DOM
+ * @param {*} querySelectorAll Selector del elemento a borrar
+ */
+ export const utilRemoveElements = (querySelectorAll) => {
+    document.querySelectorAll(querySelectorAll).forEach(e => e.parentNode.removeChild(e));
+}
+
+/**
  * Devuelve el value que tenga un input
  * @param {*} name Name del input
  * @returns Value del input

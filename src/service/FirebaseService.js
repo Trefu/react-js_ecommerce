@@ -1,4 +1,6 @@
-import { FIRESTORE } from '../cfg/Firebase/Firebase';
+import firebase from 'firebase/app';
+import '@firebase/firestore';
+import { FIRESTORE, FIRESTORE_COLLECTIONS } from '../cfg/Firebase/Firebase';
 
 const utilMapResponse = (r) => r.docs.map((e) => ({ id: e.id, ...e.data() }));
 
@@ -6,6 +8,12 @@ const utilMapResponse = (r) => r.docs.map((e) => ({ id: e.id, ...e.data() }));
  * Service que conteine métodos para conectarse a la base de datos de firebase y traer colecciones
  */
 export const firebaseService = {
+
+    /**
+     * Las colecciones que guardamos en el archivo FirebaseCollections.js
+     * // TODO: Fijarse como hacer para que esto lo devuelva dinamico
+     */
+    myCollections: () => FIRESTORE_COLLECTIONS,
 
     /**
      * Para buscar en la base de datos de Firebase
@@ -22,7 +30,6 @@ export const firebaseService = {
      * @param {*} setterCallback Callback del setter para guardar el resultado
      */
     findAndSetAll: async (nameCollection, setterCallback) => {
-        console.log(nameCollection, setterCallback);
         setterCallback(await firebaseService.findAll(nameCollection));
     },
 
@@ -95,6 +102,31 @@ export const firebaseService = {
      */
     deleteItem: async (nameCollection, id) => {
         await FIRESTORE.collection(nameCollection).doc(id).delete();
+    },
+
+    /**
+     * Código robado de la ppt, no lo pude hacer andar al batch, seguro debe ser alguna pavada
+     * @param {*} items 
+     */
+    updateItemsStock: async (items) => {
+        const query = await FIRESTORE.collection(firebaseService.myCollections().ITEMS).where(
+            firebase.firestore.FieldPath.documentId(), 'in', items.map(e => e.item.id)
+        ).get();
+        
+        const batch = FIRESTORE.batch();
+
+        query.docs.forEach((docSnapshot, idx) => {
+            console.log('idx ->', idx);
+
+            console.log(`if -> ${docSnapshot.data().stock} >= ${items[idx].cantidad}`)
+            if(docSnapshot.data().stock >= items[idx].cantidad) {
+                console.log('snapshot.ref ->', docSnapshot.ref)
+                batch.update(
+                    docSnapshot.ref,
+                    { stock: (docSnapshot.data().stock - items[idx].cantidad) }
+                )
+            }
+        })
     }
 
 }

@@ -4,17 +4,15 @@ import { ItemList } from '../../components/ItemList/ItemList';
 //import { ItemListSearch } from '../../components/ItemListSearch/ItemListSearch';
 import { firebaseService } from '../../service/FirebaseService';
 
-const ITEMS_COLLECTION_NAME = 'items';
-
 export const ItemListContainer = () => {
     const { id: itemCategory } = useParams();
     const [productos, setProductos] = useState([]);
     
     useEffect(() => {
         if(itemCategory) {
-            firebaseService.findAndSetWithFilter(ITEMS_COLLECTION_NAME, setProductos, ['category', '==', itemCategory]);
+            firebaseService.findAndSetWithFilter(firebaseService.myCollections().ITEMS, setProductos, ['category', '==', itemCategory]);
         } else {
-            firebaseService.findAndSetAll(ITEMS_COLLECTION_NAME, setProductos);
+            firebaseService.findAndSetAll(firebaseService.myCollections().ITEMS, setProductos);
         }
     }, [itemCategory]);
 

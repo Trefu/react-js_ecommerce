@@ -67,13 +67,26 @@ export const CartComponentContext = ({ children }) => {
         return cant;
     }
 
+    const removeAllItems = () => {
+        setCart([]);
+    }
+
+    const PROVIDER = {
+        cart,
+        addItem,
+        changeItemQuantityFromCartById,
+        getItemsQuantity,
+        deleteItemFromCartById,
+        removeAllItems
+    }
+
     useEffect(() => {
         // Dejo el useEffect junto con la consola para propositos de testing
         console.log(cart);
     }, [cart]);
 
     return (
-        <CartContext.Provider value={{ cart, addItem, changeItemQuantityFromCartById, getItemsQuantity, deleteItemFromCartById }}>
+        <CartContext.Provider value={PROVIDER}>
             {children}
         </CartContext.Provider>
     )

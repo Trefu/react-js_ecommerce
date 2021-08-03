@@ -46,11 +46,75 @@ a.a-small:hover {
   color: var(--grey-dark-3);
 }
 
+form.any-f {
+
+}
+
+form.any-f div.i-c {
+  display: block;
+}
+
+form.any-f div.i-c label,
+form.any-f div.i-c input {
+  display: inline-block;
+}
+
+form.any-f div.i-c label {
+  width: 35%;
+  margin-right: 16px;
+  font-weight: 600;
+}
+
+form.any-f div.i-c input {
+  width: 45%;
+  margin-left: 16px;
+  border-radius: 5px;
+  appearance: none;
+  border: 1px solid var(--grey-light-4);
+  background-color: var(--grey-light-2);
+  color: var(--grey-dark-4);
+}
+/*
+form.any-f div.i-c input+span.error-leyenda::before {
+  margin-right: 16px;
+  content: "";
+  width: 35%;
+  display: block;
+}*/
+
+form.any-f div.i-c input+span.error-leyenda {
+  color: rgb(175, 10, 10);
+  font-size: 12px;
+  display: block;
+}
+
+form.any-f div.error-c {
+  border-radius: 5px;
+  color: rgb(175, 10, 10);
+  background-color:rgb(255, 190, 190);
+  border: 1px solid rgb(255, 150, 150);
+  padding: 12px 16px;
+  margin-top: 32px;
+  display: none;
+}
+
+form.any-f div.error-c h4 {
+  text-transform: uppercase;
+  margin: 0;
+}
+
+form.any-f div.error-c p {
+  margin: 0;
+}
+
+form.any-f div.error-c
+
 .ars-symbol::before { content: "$"; }
 
 .c-g-d_2 { color: var(--grey-dark-2); }
 .f-w_n { font-weight: normal; }
 .t-a_c { text-align: center; }
+.t-t_u { text-transform: uppercase; }
 
 .b-r_5 { border-radius: 5px; }
 .b-r_5p { border-radius: 5%; }
@@ -75,6 +139,8 @@ a.a-small:hover {
 
 .m-w_80p { max-width: 80%; }
 .m-w_25p { max-width: 25%; }
+.w_15p { width: 15%; }
+.w_35p { width: 35%; }
 .w_50p { width: 50%; }
 .w_100p { width: 100%; }
 
@@ -87,6 +153,7 @@ a.a-small:hover {
 .m-t_32 { margin-top: 32px; }
 .m-b_0 { margin-bottom: 0px; }
 .m-b_32 { margin-bottom: 32px; }
+.m-b_12 { margin-bottom: 12px; }
 .m-b_16 { margin-bottom: 16px; }
 .m-l_a { margin-left: auto; }
 .m-l_32 { margin-left: 32px; }
@@ -96,7 +163,11 @@ a.a-small:hover {
 
 .p_32 { padding: 32px }
 .p_22 { padding: 22px }
+.p-t_0 { padding-top: 0; }
+.p-b_0 { padding-bottom: 0; }
+.p-l_16 { padding-left: 16px; }
 .p-l_32 { padding-left: 32px; }
+.p-r_16 { padding-right: 16px; }
 .p-r_32 { padding-right: 32px; }
 .p-tb_22 { padding: 22px 0; }
 .p-lr_22 { padding: 0 22px; }
@@ -107,6 +178,8 @@ a.a-small:hover {
 .f-d_c { flex-direction: column; }
 .f-w_w { flex-wrap: wrap; }
 .a-i_c { align-items: center; }
+.a-i_b { align-items: baseline; }
+.a-i_fs { align-items: flex-start; }
 .j-c_sb { justify-content: space-between; }
 .j-c_c { justify-content:center }
 

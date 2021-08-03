@@ -1,0 +1,23 @@
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.articles-container .order-item-article {
+    /*width: 350px;*/
+    width: 235px;
+    margin-right: 16px;
+}
+
+.articles-container .order-item-article img {
+    width: 50%;
+    height: 60%;
+    margin: 12px 0;
+}
+
+.articles-container .order-item-article p,
+.articles-container .order-item-article h3 {
+    margin: 0;
+}
