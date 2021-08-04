@@ -1,5 +1,3 @@
-import firebase from 'firebase/app';
-import '@firebase/firestore';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext/CartContext';
@@ -15,7 +13,7 @@ import { useHistory } from "react-router-dom";
  * Mover la lógica de firestore
  */
 export const Cart = () => {
-    const { cart } = useContext(CartContext);
+    const { cart, removeAllItems } = useContext(CartContext);
     const history = useHistory();
     let total = 0;
 
@@ -30,28 +28,19 @@ export const Cart = () => {
                     email: utilGetValueByName('email')
                 },
                 items: cart,
-                date: firebase.firestore.Timestamp.fromDate(new Date()),
+                date: firebaseService.parseDate(new Date()),
                 total: total
             }
 
-            // Esto está mal, fijate de tenerlo en localstore
-            // (Bah no sé si tan mal, porque capaz otro "usuario" compra el item y le cambia el stock, entonces habría que consultarlo de nuevo)
-            let auxItems = await firebaseService.findWithFilter(firebaseService.myCollections().ITEMS, [
-                firebase.firestore.FieldPath.documentId(),
-                'in',
-                data.items.map(e => e.item.id)
-            ]);
+            // TODO: Clavar un set loading
 
-            // Por cada uno de los items que me traje con su stock, lo actualizo con el que va comprar el "usuario"
-            auxItems.forEach(async (auxI) => {
-                let cartItem = data.items.find(e => e.item.id === auxI.id);
-                console.log(`Cart -> (Id [${cartItem.item.id}], Nombre [${cartItem.item.name}, Cantidad [${cartItem.cantidad}] ## Store -> (Id [${auxI.id}], Nombre [${auxI.name}], Stock [${auxI.stock}])`)
-                await firebaseService.updateItem(firebaseService.myCollections().ITEMS, auxI.id, { stock: (auxI.stock - cartItem.cantidad) })
-            });
-
+            // Actualizo el stock
+            await firebaseService.updateItemsStock(data.items);
             // Genero la orden
             let orderId = await firebaseService.addItem(firebaseService.myCollections().ORDERS, data);
-            console.log(`Se generó una orden nueva con la id [${orderId}]`);
+        
+            // Limpio el Cart
+            removeAllItems();
             history.push(`/order/${orderId}`);
         }
     }
@@ -66,8 +55,8 @@ export const Cart = () => {
         let itsOk = true;
         for (let e of required) {
             if (!utilGetValueByName(e)) {
-                showFormError('Debes completar el formulario');
-                highLightInputError('Campo vacío', e);
+                showFormError('Debes completar el formulario', 'buyer-form');
+                highLightInputError('Campo vacío', 'buyer-form', e);
                 itsOk = false;
             }
         }
@@ -75,17 +64,17 @@ export const Cart = () => {
         return itsOk;
     }
 
-    const highLightInputError = (message, name) => {
-        let e = document.querySelector(`form.any-f div.i-c input[name=${name}]`);
+    const highLightInputError = (message, formId, name) => {
+        let e = document.querySelector(`form#${formId}.any-f div.i-c input[name=${name}]`);
         let span = document.createElement('span');
         span.classList.add("error-leyenda");
         span.innerText = message;
         e.parentNode.insertBefore(span, e.nextSibling);
     }
 
-    const showFormError = (message) => {
-        document.querySelector('div.error-c p').innerText = message;
-        document.querySelector('div.error-c').style.display = "block";
+    const showFormError = (message, formId) => {
+        document.querySelector(`#${formId} div.error-c p`).innerText = message;
+        document.querySelector(`#${formId} div.error-c`).style.display = "block";
     }
 
     return (
@@ -106,7 +95,7 @@ export const Cart = () => {
                                 }
                             </div>
 
-                            <form className="any-f bdr-g-l_3 bg-g-l_1 b-r_5 p_32 w_35p">
+                            <form id="buyer-form" className="any-f bdr-g-l_3 bg-g-l_1 b-r_5 p_32 w_35p">
                                 <div className="i-c m-b_16">
                                     <label htmlFor="name">Nombre</label>
                                     <input name="name" type="text" />

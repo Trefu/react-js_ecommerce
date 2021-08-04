@@ -8,27 +8,13 @@ export const AddItem = () => {
     const { id } = useParams();
     const [newId, setNewId] = useState([]);
 
-    const findAndLoadItem = async () => {
-        let { name, img_url, plataform, price, stock, category } = await firebaseService.findById('items', id);
-        utilSetValueByName('name', name);
-        utilSetValueByName('img_url', img_url);
-        utilSetValueByName('plataform', plataform);
-        utilSetValueByName('price', price);
-        utilSetValueByName('stock', stock);
-        utilSetValueByName('category', category);
-    }
-
     const updateItem = async (data) => {
-        console.log('Se va actualizar el item');
         await firebaseService.updateItem('items', id, data);
-        console.log(`Item actualizado con éxito`);
     }
 
     const addItem = async (data) => {
-        console.log('Se va crear el item');
         let rId = await firebaseService.addItem('items', data);
         setNewId(rId);
-        console.log(`Item creado con éxito -> ${newId}`);
     }
 
     const submitHanlder = async () => {
@@ -40,7 +26,6 @@ export const AddItem = () => {
             price: utilGetValueByName("price"),
             stock: utilGetValueByName("stock")
         }
-        console.log('Se recogió la data ->', data);
 
         document.getElementById("formulario").reset();
 
@@ -65,6 +50,16 @@ export const AddItem = () => {
     }
 
     useEffect(() => {
+        const findAndLoadItem = async () => {
+            let { name, img_url, plataform, price, stock, category } = await firebaseService.findById('items', id);
+            utilSetValueByName('name', name);
+            utilSetValueByName('img_url', img_url);
+            utilSetValueByName('plataform', plataform);
+            utilSetValueByName('price', price);
+            utilSetValueByName('stock', stock);
+            utilSetValueByName('category', category);
+        }
+
         if (id) findAndLoadItem();
     }, [id]);
 
@@ -75,7 +70,7 @@ export const AddItem = () => {
             <p>Esto es a modo de prueba, no debería ni pushear esto.</p>
 
             <div id="mensaje" className="w_50p b-r_5 bdr-g-d_1 bg-g-l_3 p_22 m-b_32" style={{ display: 'none' }}>
-                <h4 className="m_0"></h4>
+                <h4 className="m_0">Mensaje</h4>
                 <Link className="m-t_5" to={`/item/${id ? id : newId}`}>Ver item</Link>
             </div>
 
