@@ -9,15 +9,11 @@ export const Order = () => {
     const { removeAllItems } = useContext(CartContext);
     const [order, setOrder] = useState([]);
 
-    const consultarOrden = async () => {
-        firebaseService.findAndSetAll(firebaseService.myCollections().ORDERS, setOrder);
-    }
-
     const getItems = () => {
-        if (order[0] === undefined) {
+        if (order.items === undefined) {
             return '';
         } else {
-            let articles = order[0].items.map((i) => {
+            let articles = order.items.map((i) => {
                 let itemTotal = i.item.price * i.cantidad;
                 return <>
                     <article className="order-item-article bdr-g-l_3 bg-g-l_1 b-r_5 d-f f-d_c a-i_c j-c_c" key={i.item.id}>
@@ -34,26 +30,30 @@ export const Order = () => {
     }
 
     useEffect(() => {
+        const consultarOrden = async () => {
+            let o = await firebaseService.findById(firebaseService.myCollections().ORDERS, orderId);
+            setOrder(o);
+        }
+
         removeAllItems();
 
         if (order.length === 0) {
             consultarOrden();
         }
-
-    }, [orderId, order]);
+    }, [orderId, order, removeAllItems]);
 
     return (
         <>
             <section className="basic-container m-t_32">
 
-                <h1 className="m_0">Gracias {order.length === 0 ? '' : order[0].buyer.name} por tu compra!</h1>
+                <h1 className="m_0">Gracias {order.length === 0 ? '' : order.buyer.name} por tu compra!</h1>
                 <p className="m-t_12 m-b_0">Tu número de orden es <b className="t-t_u">{orderId}</b>.</p>
 
                 <div className="articles-container">
                     {getItems()}
                 </div>
 
-                {order.length === 0 ? '' : <p>Total: <b>${order[0].total}</b></p>}
+                {order.length === 0 ? '' : <p>Total: <b>${order.total}</b></p>}
             </section>
         </>
     )
