@@ -61,7 +61,7 @@ export const firebaseService = {
      */
     findById: async (nameCollection, id) => {
         const r = await FIRESTORE.collection(nameCollection).doc(id).get();
-        return { id:r.id, ...r.data() };
+        return { id: r.id, ...r.data() };
     },
 
     /**
@@ -105,22 +105,49 @@ export const firebaseService = {
     },
 
     /**
-     * Código robado de la ppt, no lo pude hacer andar al batch, seguro debe ser alguna pavada
-     * @param {*} items 
+     * Recibe una fecha y la parsea al tipo de firestore
+     * @param {*} date Fecha a parsear
+     * @returns fecha parseada
      */
-    updateItemsStock: async (items) => {
+    parseDate: (date) => {
+        return firebase.firestore.Timestamp.fromDate(date);
+    },
+
+    /**
+     * Elimina un item
+     * @param {*} nameCollection Nombre de la colección en donde esta el item
+     * @param {*} id Del item a eliminar
+     */
+    updateItemsStock: async (itemsFromCart) => {
+        // Esto está mal, fijate de tenerlo en localstore
+        // (Bah no sé si tan mal, porque capaz otro "usuario" compra el item y le cambia el stock, entonces habría que consultarlo de nuevo)
+        let filteredItems = await firebaseService.findWithFilter(firebaseService.myCollections().ITEMS, [
+            firebase.firestore.FieldPath.documentId(),
+            'in',
+            itemsFromCart.map(e => e.item.id)
+        ]);
+
+        filteredItems.forEach(async (unItem) => {
+            // Por cada uno de los items que me traje con su stock, lo actualizo con el que va comprar el "usuario"
+            let { cantidad } = itemsFromCart.find(e => e.item.id === unItem.id);
+            await firebaseService.updateItem(firebaseService.myCollections().ITEMS, unItem.id, { stock: (unItem.stock - cantidad) });
+        });
+    },
+
+    /**
+     * @deprecated
+     * Código robado de la ppt, no lo pude hacer andar al batch, seguro debe ser alguna pavada
+     * @param {*} items
+     */
+    updateItemsStockWithBatch: async (items) => {
         const query = await FIRESTORE.collection(firebaseService.myCollections().ITEMS).where(
             firebase.firestore.FieldPath.documentId(), 'in', items.map(e => e.item.id)
         ).get();
-        
+
         const batch = FIRESTORE.batch();
 
         query.docs.forEach((docSnapshot, idx) => {
-            console.log('idx ->', idx);
-
-            console.log(`if -> ${docSnapshot.data().stock} >= ${items[idx].cantidad}`)
-            if(docSnapshot.data().stock >= items[idx].cantidad) {
-                console.log('snapshot.ref ->', docSnapshot.ref)
+            if (docSnapshot.data().stock >= items[idx].cantidad) {
                 batch.update(
                     docSnapshot.ref,
                     { stock: (docSnapshot.data().stock - items[idx].cantidad) }
