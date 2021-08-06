@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 
+const CART_STORAGE_KEY = 'CART';
+
 export const CartContext = createContext();
 
 export const CartComponentContext = ({ children }) => {
@@ -31,11 +33,6 @@ export const CartComponentContext = ({ children }) => {
     const deleteItemFromCartById = (id) => {
         deleteItemFromCartByIndex(findItemIndexById(id));
     }
-
-    /*
-    const findItemById = (id) => {
-        return cart.find(e => e.item.id === id);
-    } */
     
     const findItemIndexById = (id) => {
         return cart.findIndex(e => e.item.id === id);
@@ -44,17 +41,17 @@ export const CartComponentContext = ({ children }) => {
     const addItemToCart = (item, cantidad) => {
         let auxCart = [...cart];
         auxCart.push({item:item, cantidad:cantidad});
-        setCart(auxCart);
+        handlerSetCart(auxCart);
     }
 
     const deleteItemFromCartByIndex = (index) => {
         cart.splice(index, 1);
-        setCart([...cart]);
+        handlerSetCart([...cart]);
     }
 
     const changeItemQuantityFromCartByIndex = (index, cantidad) => {
         cart[index].cantidad = cantidad;
-        setCart([...cart]);
+        handlerSetCart([...cart]);
     }
 
     const hasOtherQuantity = (index, cantidad) => {
@@ -68,7 +65,22 @@ export const CartComponentContext = ({ children }) => {
     }
 
     const removeAllItems = () => {
-        setCart([]);
+        handlerSetCart([]);
+    }
+
+    const handlerSetCart = (cart) => {
+        window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+        setCart(cart);
+    }
+
+    const handlerGetCart = () => {
+        let cartFromLocalStorage = localStorage.getItem(CART_STORAGE_KEY);
+
+        if(cartFromLocalStorage != null) {
+            handlerSetCart(JSON.parse(cartFromLocalStorage));
+        }
+
+        return [];
     }
 
     const PROVIDER = {
@@ -81,9 +93,10 @@ export const CartComponentContext = ({ children }) => {
     }
 
     useEffect(() => {
-        // Dejo el useEffect junto con la consola para propositos de testing
-        console.log(cart);
-    }, [cart]);
+        if(!cart.length) {
+            handlerGetCart();
+        }
+    }, [/*cart*/]);
 
     return (
         <CartContext.Provider value={PROVIDER}>
