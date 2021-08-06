@@ -37,6 +37,11 @@ body {
   background-color: var(--branding-color-1-hover);
 }
 
+.btn-primary.disabled {
+  color: var(--grey-dark-1);
+  background-color: var(--grey-light-3);
+}
+
 a.a-small {
   color: var(--branding-color-2);
   font-size: 12px;
@@ -44,10 +49,6 @@ a.a-small {
 
 a.a-small:hover {
   color: var(--grey-dark-3);
-}
-
-form.any-f {
-
 }
 
 form.any-f div.i-c {
@@ -107,8 +108,6 @@ form.any-f div.error-c p {
   margin: 0;
 }
 
-form.any-f div.error-c
-
 .ars-symbol::before { content: "$"; }
 
 .c-g-d_2 { color: var(--grey-dark-2); }
@@ -142,6 +141,8 @@ form.any-f div.error-c
 .w_15p { width: 15%; }
 .w_35p { width: 35%; }
 .w_50p { width: 50%; }
+.w_55p { width: 55%; }
+.w_60p { width: 60%; }
 .w_100p { width: 100%; }
 
 .m_0 { margin: 0; }

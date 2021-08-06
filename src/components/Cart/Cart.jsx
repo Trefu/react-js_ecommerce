@@ -86,7 +86,7 @@ export const Cart = () => {
                         <p className="m-t_12 m-b_0">Completá el formulario para terminar tu compra.</p>
 
                         <div className="m-t_32 d-f j-c_sb a-i_fs w_100p">
-                            <div className="m-r_32">
+                            <div className="m-r_32 w_55p">
                                 {
                                     cart.map(({ item, cantidad }) => {
                                         total += (item.price * cantidad);

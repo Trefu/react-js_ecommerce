@@ -73,16 +73,6 @@ export const CartComponentContext = ({ children }) => {
         setCart(cart);
     }
 
-    const handlerGetCart = () => {
-        let cartFromLocalStorage = localStorage.getItem(CART_STORAGE_KEY);
-
-        if(cartFromLocalStorage != null) {
-            handlerSetCart(JSON.parse(cartFromLocalStorage));
-        }
-
-        return [];
-    }
-
     const PROVIDER = {
         cart,
         addItem,
@@ -93,10 +83,24 @@ export const CartComponentContext = ({ children }) => {
     }
 
     useEffect(() => {
+        /**
+         * Acá igual faltaría chequear si no cambió el stock
+         * Si cambió, avisarle de alguna forma al usuario
+         */
+        const handlerGetCart = () => {
+            let cartFromLocalStorage = localStorage.getItem(CART_STORAGE_KEY);
+
+            if(cartFromLocalStorage != null) {
+                handlerSetCart(JSON.parse(cartFromLocalStorage));
+            }
+
+            return [];
+        }
+
         if(!cart.length) {
             handlerGetCart();
         }
-    }, [/*cart*/]);
+    }, [cart]);
 
     return (
         <CartContext.Provider value={PROVIDER}>
