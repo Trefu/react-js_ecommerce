@@ -25,7 +25,7 @@ export const CartItem = ({ item, cantidad }) => {
     return (
         <div className="cart-item bdr-g-l_3 bg-g-l_1 b-r_5 row-to-column_in-980">
 
-            <button className="clean-button" onClick={() => removeItem(item.id, item.name)}>X</button>
+            <button className="clean-button btn-grey" onClick={() => removeItem(item.id, item.name)}>X</button>
 
             <img src={item.img_url} alt={item.name} />
             <h3 onClick={() => { history.push(`/item/${item.id}`) }}>{item.name}</h3>

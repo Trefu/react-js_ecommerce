@@ -1,5 +1,5 @@
 :root {
-    --icon-size: 20px;
+    --icon-size: 35px;
 }
 
 a {
@@ -7,54 +7,142 @@ a {
     align-items: center;
 }
 
-div.widget-item-list div span:first-of-type,
-a span {
+div.widget-item-list {
+    display: none;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    overflow-y: scroll;
+    right: 32px;
+    margin: 0;
+    margin-top: -32px;
+    width: 25%;
+    max-height: 100%;
+    z-index: 50;
+}
+
+div.widget-item-list hr {
+    border: none;
+    height: 1px;
+    color: var(--grey-light-3);
+    background-color: var(--grey-light-3);
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+div.widget-item-list .a-small {
+    display: none;
+}
+
+div.widget-item-list div.each-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    border-bottom: 1px solid var(--grey-light-3);
+}
+
+div.widget-item-list .each-item:first-child {
+    padding-top: unset;
+}
+
+div.widget-item-list .each-item:nth-last-of-type(1) {
+    border-bottom: none;
+    padding-bottom: unset;
+}
+
+div.widget-item-list div.each-item p.title {
+    font-weight: 700;
+    margin-right: 32px;
+    width: 45%;
+    font-size: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+div.widget-item-list div.each-item p.price {
+    color: var(--grey-dark-3);
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: auto;
+}
+
+div.widget-item-list div.each-item button.btn-grey {
+    margin-left: auto;
+}
+
+div.widget-item-list div.each-item span:first-of-type {
     background-color: var(--branding-color-1);
-    margin-left: 5px;
     width: var(--icon-size);
     line-height: var(--icon-size);
     border-radius: 50%;
     text-align: center;
     color: #fff;
-    font-weight: 400;
+    font-weight: 600;
+    margin-left: -20px;
+    margin-bottom: -50px;
 }
 
-div.widget-item-list {
-    position: absolute;
-    /* background-color: oldlace; */
-    margin-top: 15px;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 16px;
-    max-height: 300px;
-    max-width: 350px;
-    overflow-y: scroll;
-    margin-right: 150px;
+div.widget-item-list div.each-item img {
+    border-radius: 5px;
+    width: 65px;
+    height: 85px;
+    object-fit: cover;
 }
 
-div.widget-item-list.widget-hidden {
-    display: none;
+div.widget-item-list p.total {
+    text-align: right;
+    font-size: 18px;
 }
 
-div.widget-item-list div {
-    display: flex;
-    align-items: center;
+@media (max-width:1360px) {
+    div.widget-item-list  {
+        width: 35%;
+    }
+
+    /*div.widget-item-list div.each-item p.price {
+        font-size: 16px;
+    }*/
+
+    div.widget-item-list div.each-item span:first-of-type {
+        width: calc(var(--icon-size) - 10px);
+        line-height: calc(var(--icon-size) - 10px);
+    }
+
+    div.widget-item-list div.each-item img {
+        width: 45px;
+        height: 65px;
+    }
 }
 
-div.widget-item-list div span:first-of-type {
-    position: absolute;
-    margin-left: -10px;
-}
+@media (max-width:980px) {
+    div.widget-item-list  {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        overflow: auto;
+        overflow-y: auto;
+        right: unset;
+        margin: 0 auto;
+        max-height: auto;
 
-div.widget-item-list div img {
-    border-radius: 100%;
-    width: 75px;
-    height: 75px;
-}
+        width: 90%;
+        margin: 0 auto;
+        margin-top: 16px;
+        padding: 16px;
+        min-width: auto;
+    }
 
-div.widget-item-list div h5 {
-    margin: 0 10px;
-    cursor: pointer;
+    div.widget-item-list .a-small {
+        display: inline-block;
+        margin: 0 auto;
+    }
+
+    div.widget-item-list p.total {
+        text-align: center;
+    }
 }
