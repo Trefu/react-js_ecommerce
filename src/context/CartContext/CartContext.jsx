@@ -111,10 +111,6 @@ export const CartComponentContext = ({ children }) => {
     }
 
     useEffect(() => {
-        /**
-         * Acá igual faltaría chequear si no cambió el stock
-         * Si cambió, avisarle de alguna forma al usuario
-         */
         const handlerGetCart = () => {
             let cartFromLocalStorage = localStorage.getItem(CART_STORAGE_KEY);
 
@@ -128,7 +124,7 @@ export const CartComponentContext = ({ children }) => {
         if (!cart.length) {
             handlerGetCart();
         }
-    }, [cart]);
+    }, [cart.length]);
 
     return (
         <CartContext.Provider value={PROVIDER}>

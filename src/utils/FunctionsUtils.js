@@ -21,7 +21,7 @@ export const utilRemoveElement = (querySelector) => {
  * Elimina uno o varios elementos del DOM
  * @param {*} querySelectorAll Selector del elemento a borrar
  */
- export const utilRemoveElements = (querySelectorAll) => {
+export const utilRemoveElements = (querySelectorAll) => {
     document.querySelectorAll(querySelectorAll).forEach(e => e.parentNode.removeChild(e));
 }
 
@@ -41,4 +41,74 @@ export const utilGetValueByName = (name) => {
  */
 export const utilSetValueByName = (name, value) => {
     document.getElementsByName(name)[0].value = value;
+}
+
+/**
+ * Utils que contiene funcionalidad genericas para los formularios
+ */
+export const utilsForm = {
+
+    /**
+     * Muestra un mensaje de error debajo del input
+     * @param {*} message Mensaje a mostrar
+     * @param {*} formId Id del fomulario
+     * @param {*} name Nombre del input para hacer query
+     */
+    highLightInputError: (message, formId, name) => {
+        let e = document.querySelector(`form#${formId}.any-f div.i-c input[name=${name}]`);
+        let span = document.createElement('span');
+        span.classList.add("error-leyenda");
+        span.innerText = message;
+        e.parentNode.insertBefore(span, e.nextSibling);
+    },
+
+    /**
+     * Muestra el mensaje de eror del formulario.
+     * El mensaje se va mostrar en donde se haya ubicado, dentro del form el elemento.
+     * @example <div className="error-c">
+     *  <h4>Atención</h4>
+     *  <p>Mensaje de error</p>
+     * </div>
+     * @param {*} message Mensaje a mostrar
+     * @param {*} formId Id del fomulario
+     */
+    showFormError: (message, formId) => {
+        document.querySelector(`#${formId} div.error-c p`).innerText = message;
+        document.querySelector(`#${formId} div.error-c`).style.display = "block";
+    },
+
+    /**
+     * Limpia los mensajes de error que puedan tener el formulario
+     * @param {*} formId Id del fomulario
+     */
+    cleanFormErrorMessages: (formId) => {
+        utilRemoveElements(`#${formId} span.error-leyenda`);
+        document.querySelector(`#${formId} div.error-c`).style.display = "none";
+    },
+
+    /**
+     * Recorre los campos de un formulario viendo si están completados
+     * @param {*} formId Id dle fomrulario
+     * @param {array} requiredFields lista de input names que son obligatorios
+     * @param {*} inputMessage mensaje a mostrar debajo del input
+     * @param {*} generalMessage mensaje general a mostrar
+     * @returns Si es valido o no
+     */
+    validateRequiredFields: (formId, requiredFields, inputMessage, generalMessage) => {
+        utilsForm.cleanFormErrorMessages(formId);
+        let itsOk = true;
+
+        for (let e of requiredFields) {
+            if (!utilGetValueByName(e)) {
+                utilsForm.highLightInputError(inputMessage, formId, e);
+                itsOk = false;
+            }
+        }
+
+        if (!itsOk) {
+            utilsForm.showFormError(generalMessage, formId);
+        }
+
+        return itsOk;
+    }
 }
