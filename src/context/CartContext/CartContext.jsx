@@ -1,10 +1,12 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { UIContext } from "../UIContext/UIContext";
 
 const CART_STORAGE_KEY = 'CART';
 
 export const CartContext = createContext();
 
 export const CartComponentContext = ({ children }) => {
+    const { showPopupNotification:UIContextShowPopupNotification } = useContext(UIContext);
     const [cart, setCart] = useState([]);
 
     // TODO: Mejorar todo el choclo rancio de if's
@@ -42,14 +44,17 @@ export const CartComponentContext = ({ children }) => {
         let auxCart = [...cart];
         auxCart.push({ item: item, cantidad: cantidad });
         handlerSetCart(auxCart);
+        UIContextShowPopupNotification(`Se agregaron ${cantidad} ${item.name} al carrito`);
     }
 
     const deleteItemFromCartByIndex = (index) => {
+        UIContextShowPopupNotification(`Se eliminó ${cart[index].item.name} el producto del carrito`);
         cart.splice(index, 1);
         handlerSetCart([...cart]);
     }
 
     const changeItemQuantityFromCartByIndex = (index, cantidad) => {
+        UIContextShowPopupNotification(`Se modificó la cantidad del producto`);
         cart[index].cantidad = cantidad;
         handlerSetCart([...cart]);
     }
