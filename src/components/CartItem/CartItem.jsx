@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext/CartContext';
+import { UIContext } from '../../context/UIContext/UIContext';
 import { useHistory } from "react-router-dom";
 import './CartItem.css';
 
 export const CartItem = ({ item, cantidad }) => {
     const { changeItemQuantityFromCartById, deleteItemFromCartById } = useContext(CartContext);
+    const { showConfirmDialog } = useContext(UIContext);
     const history = useHistory();
     const [count, setCount] = useState(cantidad);
 
@@ -16,12 +18,9 @@ export const CartItem = ({ item, cantidad }) => {
     }
 
     const removeItem = (id, name) => {
-        // Solución best effort, si tengo tiempo esto debería ser mejor
-        if(window.confirm(`Eliminar del carrito ${name}?`)) {
-            deleteItemFromCartById(id);
-        }
+        showConfirmDialog(`Eliminar del carrito ${name}?`, () => deleteItemFromCartById(id));
     }
-    
+
     return (
         <div className="cart-item bdr-g-l_3 bg-g-l_1 b-r_5 row-to-column_in-980">
 

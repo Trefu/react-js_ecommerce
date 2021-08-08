@@ -1,0 +1,32 @@
+div.modal-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 10;
+}
+
+div.modal-wrapper div.popup-confirm-notification {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+
+    padding: 32px;
+}
+
+div.modal-wrapper div.popup-confirm-notification div.btn-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+}
+
+div.modal-wrapper div.popup-confirm-notification div.btn-container button {
+    display: block;
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+}
+
+div.modal-wrapper div.popup-confirm-notification p {
+    margin: 0;
+}
