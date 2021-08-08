@@ -5,7 +5,7 @@ import { utilGetValueByName, utilsForm } from '../../utils/FunctionsUtils';
 import { CartContext } from '../../context/CartContext/CartContext';
 import { Cart } from '../../components/Cart/Cart';
 import { BuyerForm } from '../../components/BuyerForm/BuyerForm';
-import { CartEmptyMessage } from '../../components/CartEmptyMessage/CartEmptyMessage';
+import { EmptyMessage } from '../../components/EmptyMessage/EmptyMessage';
 
 
 export const CartContainer = () => {
@@ -56,7 +56,7 @@ export const CartContainer = () => {
                         </div>
                     </>
                     :
-                    <CartEmptyMessage />
+                    <EmptyMessage />
             }
         </section>
     );

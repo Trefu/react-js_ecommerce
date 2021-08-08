@@ -55,11 +55,11 @@ export const utilsForm = {
      * @param {*} name Nombre del input para hacer query
      */
     highLightInputError: (message, formId, name) => {
-        let e = document.querySelector(`form#${formId}.any-f div.i-c input[name=${name}]`);
+        let element = document.querySelector(`form#${formId}.any-f div.i-c input[name=${name}]`);
         let span = document.createElement('span');
         span.classList.add("error-leyenda");
         span.innerText = message;
-        e.parentNode.insertBefore(span, e.nextSibling);
+        element.parentNode.insertBefore(span, element.nextSibling);
     },
 
     /**
@@ -98,9 +98,9 @@ export const utilsForm = {
         utilsForm.cleanFormErrorMessages(formId);
         let itsOk = true;
 
-        for (let e of requiredFields) {
-            if (!utilGetValueByName(e)) {
-                utilsForm.highLightInputError(inputMessage, formId, e);
+        for (let name of requiredFields) {
+            if (!utilGetValueByName(name)) {
+                utilsForm.highLightInputError(inputMessage, formId, name);
                 itsOk = false;
             }
         }

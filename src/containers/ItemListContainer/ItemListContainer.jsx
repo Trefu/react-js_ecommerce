@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ItemList } from '../../components/ItemList/ItemList';
 import { firebaseService } from '../../service/FirebaseService';
+import { EmptyMessage } from '../../components/EmptyMessage/EmptyMessage';
 
 export const ItemListContainer = () => {
     const { id: itemCategory } = useParams();
@@ -10,7 +11,7 @@ export const ItemListContainer = () => {
     const mostrarListado = () => {
 
         if (productos == null) {
-            return (<h3>No hay productos disponibles para esta categoría :(</h3>);
+            return <EmptyMessage title={'No hay productos disponibles para esta categoría :('} description={'Probá visitando alguna de nuestras otras categorías.'}/>
         } else if (!productos.length) {
             return (<h3>Cargando...</h3>);
         }
