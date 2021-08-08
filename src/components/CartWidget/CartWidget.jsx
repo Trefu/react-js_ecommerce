@@ -11,8 +11,10 @@ export const CartWidget = () => {
 
     useEffect(() => {
         const checkIfClickedOutside = e => {
-            if (ref != null && !ref.current.contains(e.target) && handlerSidebarWidget.getDisplay() === 'block' && e.target.id !== 'cart-nav') {
-                handlerSidebarWidget.hide();
+            if(ref !== null && ref.current !== null) {
+                if (!ref.current.contains(e.target) && handlerSidebarWidget.getDisplay() === 'block' && e.target.id !== 'cart-nav') {
+                    handlerSidebarWidget.hide();
+                }
             }
         }
 

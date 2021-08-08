@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom';
 import './ItemCount.css';
 
-/**
- * Hay algo que hace ruido.
- * - Cuando se agrega al carrito, en realidad se está modificando la cantidad de items
- * - No es que se agregan "X" más items, o se borran "X" items
- * - Supongo que cuando controles stock, después vas a poder actualizarlo y va quedar más en claro
- */
-
 const TXT_BTN_AGREGAR = 'Añadir al carrito';
 const TXT_BTN_ELIMINAR = 'Eliminar del carrito';
 

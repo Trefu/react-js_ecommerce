@@ -5,8 +5,8 @@ import { ItemCount } from '../ItemCount/ItemCount';
 import './ItemDetail.css';
 
 export const ItemDetail = ({ item, description }) => {
-    const { addItem } = useContext(CartContext);
-    const [count, setCount] = useState(0);
+    const { addItem, obtenerCantidadDeUnItemById } = useContext(CartContext);
+    const [count, setCount] = useState(obtenerCantidadDeUnItemById(item.id));
     const updateCount = (n) => n <= item.stock && n >= 0 ? setCount(n) : '';
     const addToCart = () => addItem(item, count);
     
@@ -22,7 +22,7 @@ export const ItemDetail = ({ item, description }) => {
                 <h1 className="m_0 m-b_16">{item.name}</h1>
                 <h3 className="m_0 ars-symbol">{item.price}</h3>
                 <p>{description}</p>
-                <ItemCount initial={0} stock={item.stock} count={count} updateCount={updateCount} addToCart={addToCart} />
+                <ItemCount initial={count} stock={item.stock} count={count} updateCount={updateCount} addToCart={addToCart} />
             </div>
 
         </div>

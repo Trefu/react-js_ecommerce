@@ -64,6 +64,11 @@ export const CartComponentContext = ({ children }) => {
         return cant;
     }
 
+    const obtenerCantidadDeUnItemById = (id) => {
+        let index = findItemIndexById(id);
+        return index > -1 ? cart[index].cantidad : 0;
+    }
+
     const removeAllItems = () => {
         handlerSetCart([]);
     }
@@ -99,6 +104,7 @@ export const CartComponentContext = ({ children }) => {
         addItem,
         changeItemQuantityFromCartById,
         getItemsQuantity,
+        obtenerCantidadDeUnItemById,
         deleteItemFromCartById,
         removeAllItems,
         handlerSidebarWidget
