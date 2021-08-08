@@ -4,7 +4,7 @@ import "./PopupNotification.css";
 export const PopupNotification = ({ message }) => {
 
     return (
-        <div id="PROBANDO_POPUP">
+        <div className="popup-notification">
             <p>{message}</p>
         </div>
     );

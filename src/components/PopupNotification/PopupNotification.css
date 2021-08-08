@@ -1,0 +1,14 @@
+div.popup-notification {
+    position: absolute;
+    bottom: 32px;
+    left: 32px;
+
+    background-color:rgba(0, 0, 0, 0.8);
+    color: #f5f5f5;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+div.popup-notification p {
+    margin: 0;
+}

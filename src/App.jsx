@@ -29,7 +29,6 @@ function App() {
               <Route path="*" component={NotFound404} />
             </Switch>
           </main>
-          {/* TODO: Footer */}
         </BrowserRouter>
       </CartComponentContext>
     </UIComponentContext>
