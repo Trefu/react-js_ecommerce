@@ -6,7 +6,7 @@ import './Header.css';
 export const Header = () => {
     return (
         <header>
-            <div className="basic-container d-f a-i_c">
+            <div className="basic-container d-f a-i_c f-w_w">
                 <Logo />
                 <GameQuotes />
                 <NavBar />

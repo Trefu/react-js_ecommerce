@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: var(--grey-light-2);
   color: var(--branding-color-2);
@@ -197,8 +201,22 @@ form.any-f div.error-c p {
 .a-i_b { align-items: baseline; }
 .a-i_fs { align-items: flex-start; }
 .j-c_sb { justify-content: space-between; }
-.j-c_c { justify-content:center }
+.j-c_c { justify-content: center }
 
-@media screen and (max-width: 980px) {
+@media (max-width: 980px) {
+  .basic-container { max-width: 95%; }
   .row-to-column_in-980 { flex-direction: column; }
+  .width-100p_in-980 { width: 100%; }
+  .m-t_32_in-980 { margin-top: 32px; }
+  .t-a_c_in-980 { text-align: center; }
+}
+
+@media (max-width: 680px) {
+  .basic-container {
+    max-width: 100%;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
 }

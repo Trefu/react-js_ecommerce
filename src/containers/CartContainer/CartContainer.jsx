@@ -45,7 +45,7 @@ export const CartContainer = () => {
                         <h1 className="m_0">Checkout</h1>
                         <p className="m-t_12 m-b_0">Completá el formulario para terminar tu compra.</p>
 
-                        <div className="m-t_32 d-f j-c_sb a-i_fs w_100p">
+                        <div className="m-t_32 d-f j-c_sb a-i_fs w_100p row-to-column_in-980">
                             <Cart cart={cart} setTotal={setTotal} />
                             <BuyerForm formId={FORM_ID} />
                         </div>

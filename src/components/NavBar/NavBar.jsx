@@ -20,7 +20,7 @@ export const NavBar = () => {
 
     return (
         <>
-            <nav className='nav-bar m-l_a p-tb_22'>
+            <nav className='nav-bar m-l_a p-tb_22 width-100p_in-980 t-a_c_in-980'>
                 {navBarItems.map(({ url, name }, i) => <Link key={i} to={`${url}`} alt={name}>{name}</Link>)}
                 <Link id='cart-nav' onClick={showSiderCartWidget} to={'/'} alt={`${count} productos en el carrito`}>🛒 Carrito <span>{count}</span></Link>
             </nav>

@@ -1,7 +1,7 @@
 export const BuyerForm = ({ formId }) => {
     return (
         <>
-            <form id={formId} className="any-f bdr-g-l_3 bg-g-l_1 b-r_5 p_32 w_35p">
+            <form id={formId} className="any-f bdr-g-l_3 bg-g-l_1 b-r_5 p_32 w_35p width-100p_in-980 m-t_32_in-980">
                 <div className="i-c m-b_16">
                     <label htmlFor="name">Nombre</label>
                     <input name="name" type="text" />

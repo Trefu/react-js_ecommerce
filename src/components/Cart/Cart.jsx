@@ -9,7 +9,7 @@ export const Cart = ({ cart, setTotal }) => {
     });
 
     return (
-        <div className="m-r_32 w_55p">
+        <div className="m-r_32 w_55p width-100p_in-980">
             {
                 cart.map(({ item, cantidad }) => {
                     total += (item.price * cantidad);
