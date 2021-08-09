@@ -14,31 +14,30 @@ Repositorio para subir los avances del curso de React JS de [Coderhouse](https:/
 - Está bastante verde, nada más seleccionas los productos a comprar, y rellenas un formulario
 - Esto genera una orden en Firebase con los datos de la compra, listado de items con sus cantidades y los datos del comprador.
 
-## Cosas que tiene
-- Carga y muestra un listados de productos desde una colección de Firebase.
-- Podes seleccionar ya agregar "X" cantidad, dependiendo del stock, a tu carrito.
-- El carrito se guarda en LocalStorage, para prevenir que se borre todo al actualizar la página
-- Se hizo un service con alta, baja y modificación de colecciones de Firebase. `FirebaseService.js`
-- Se hizo una colección de funciones útiles para manejar más a meno JavaScript vanilla. `FunctionUtils.js`
-
-### Archivos de configuracion:
+#### Archivos de configuracion:
 - En `cfg/Firebase/Firebase.js` está el código para inicializar Firebase.
 - En `cfg/Firebase/FirebaseCollections.json` está el listado de colecciones, esto lo hice para no tener que estar repitiendo el nombre de la colección.
 - En `cfg/Firebase/FirebaseConfig.json` están las key's de conexión a Firebase, esto debería estar incluido en el `.gitignore`.
 - En `cfg/NavBar/NavBarItems.json` están los items-url de las categorías. Esto debería generarse dinámicamente trayendo una colección desde Firebase.
 
-### Componentes:
+#### Componentes:
 - En `src/components/AddItem` está un componente de prueba, para realizar alta y modificación de productos, no debería haber estado en el entregable final.
 - En `src/components/Order` está el componente donde va ser direccionado el usuario al terminar su compra.
 - En `src/components/PopupConfirmMessage` está el componente que muestra un diálogo tipo modal, donde puede aceptar o rechazar, recibe por callback sus funciones.
 - En `src/components/PopupNotification` componente donde se presenta el mensaje de las notificaciones popup.
 
-### Containers:
+#### Containers:
 - En `src/containers/CartContainer` está lógica para generar una orden de compra y actualizar el stock de los items.
 - En `src/containers/ItemDetailContainer` está la lógica para mostrar el detalle de un item, carga por defecto su cantidad en el carrito.
 - En `src/containers/ItemListContainer` carga el listado de productos que haya en Firebase, si recibe una categoría en la url, sólo va cargar los de esa categoría.
 
+#### Context:
+- En `src/context/CartContext` se encarga de la alta, baja y modificación de elementos del carrito. Tiene spaghetti code para poder hacer utilización del mismo método (`addItem`)
+- En `src/context/UIContext` se encarga de la lógica para las notifiacioens popup y los dialog confirm. Sé que intento re-inventar la rueda con estos componentes, pero quería prácticar en lugar de usar una dependecia. Por falta de tiempo las popup están medio buggy.
 
+#### Service:
+- En `src/service/FirebaseService.js` está la lógica con funciones para traer, subir, modificar y bajar elementos de Firebase.
+- En `src/service/MercadoLibreService.js` está la lógica con la cual, al principio, le pegaba a la api de MercadoLibre para traer productos.
 
 ## Requisitos
 
