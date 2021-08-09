@@ -1,3 +1,5 @@
+![Compra](./.readme/item_buy.gif)
+
 # react-js_ecommerce
 
 Repositorio para subir los avances del curso de React JS de [Coderhouse](https://www.coderhouse.com/online/reactjs).
